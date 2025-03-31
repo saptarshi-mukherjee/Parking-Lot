@@ -1,4 +1,4 @@
-package com.EzParking.ParkingLot.Contollers;
+package com.EzParking.ParkingLot.Controllers;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
