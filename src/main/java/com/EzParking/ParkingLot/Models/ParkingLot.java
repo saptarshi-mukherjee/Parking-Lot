@@ -3,6 +3,7 @@ package com.EzParking.ParkingLot.Models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class ParkingLot {
     private List<Floor> floors;
     @OneToMany(mappedBy = "parking_lot", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Operator> operators;
+    private List<Operator> operators=new ArrayList<>();
 
 
     public List<Operator> getOperators() {

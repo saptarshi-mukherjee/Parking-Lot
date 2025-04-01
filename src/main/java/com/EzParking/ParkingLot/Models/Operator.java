@@ -15,6 +15,17 @@ public class Operator {
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private ParkingLot parking_lot;
+    @OneToOne(mappedBy = "operator", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Gate gate;
+
+    public Gate getGate() {
+        return gate;
+    }
+
+    public void setGate(Gate gate) {
+        this.gate = gate;
+    }
 
     public ParkingLot getParking_lot() {
         return parking_lot;

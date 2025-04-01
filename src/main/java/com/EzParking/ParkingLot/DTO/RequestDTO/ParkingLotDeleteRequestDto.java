@@ -1,4 +1,4 @@
-package com.EzParking.ParkingLot.DTO;
+package com.EzParking.ParkingLot.DTO.RequestDTO;
 
 public class ParkingLotDeleteRequestDto {
     private String name, address;

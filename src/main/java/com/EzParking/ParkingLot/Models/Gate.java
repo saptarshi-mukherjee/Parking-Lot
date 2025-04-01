@@ -1,6 +1,7 @@
 package com.EzParking.ParkingLot.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,8 +10,9 @@ public class Gate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private GateType type;
-    private Integer gate_no;
-    @OneToOne
+    //private Integer gate_no;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Operator operator;
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
@@ -40,13 +42,13 @@ public class Gate {
         this.type = type;
     }
 
-    public Integer getGate_no() {
-        return gate_no;
-    }
-
-    public void setGate_no(Integer gate_no) {
-        this.gate_no = gate_no;
-    }
+//    public Integer getGate_no() {
+//        return gate_no;
+//    }
+//
+////    public void setGate_no(Integer gate_no) {
+////        this.gate_no = gate_no;
+////    }
 
     public Operator getOperator() {
         return operator;

@@ -1,9 +1,9 @@
 package com.EzParking.ParkingLot.Repositories;
 
-import com.EzParking.ParkingLot.Models.PetroleumSpot;
+import com.EzParking.ParkingLot.Models.Operator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PetroleumSpotRepository extends JpaRepository<PetroleumSpot,Long> {
+public interface OperatorRepository extends JpaRepository<Operator,Long> {
 }
