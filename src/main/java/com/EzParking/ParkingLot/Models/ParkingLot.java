@@ -15,6 +15,18 @@ public class ParkingLot {
     @OneToMany(mappedBy = "parking_lot", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Floor> floors;
+    @OneToMany(mappedBy = "parking_lot", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Operator> operators;
+
+
+    public List<Operator> getOperators() {
+        return operators;
+    }
+
+    public void setOperators(List<Operator> operators) {
+        this.operators = operators;
+    }
 
     public Long getId() {
         return id;

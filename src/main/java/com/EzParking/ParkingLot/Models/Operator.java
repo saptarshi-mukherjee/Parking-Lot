@@ -1,10 +1,8 @@
 package com.EzParking.ParkingLot.Models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -14,7 +12,17 @@ public class Operator {
     private Long id;
     private String name;
     private String phone;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
+    private ParkingLot parking_lot;
 
+    public ParkingLot getParking_lot() {
+        return parking_lot;
+    }
+
+    public void setParking_lot(ParkingLot parking_lot) {
+        this.parking_lot = parking_lot;
+    }
 
     public Long getId() {
         return id;
