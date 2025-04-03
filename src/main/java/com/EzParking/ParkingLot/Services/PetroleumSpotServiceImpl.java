@@ -4,6 +4,7 @@ import com.EzParking.ParkingLot.Models.Floor;
 import com.EzParking.ParkingLot.Models.PetroleumSpot;
 import com.EzParking.ParkingLot.Models.SpotType;
 import com.EzParking.ParkingLot.Repositories.PetroleumSpotRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class PetroleumSpotServiceImpl implements PetroleumSpotService {
 
     @Autowired

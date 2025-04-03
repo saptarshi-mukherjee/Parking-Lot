@@ -11,9 +11,39 @@ public class Vehicle {
     private Long id;
     private VehicleType type;
     private String reg_no;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "vehicle")
     @JsonBackReference
-    private User user;
+    Ticket ticket;
+    @OneToOne(mappedBy = "vehicle")
+    @JsonManagedReference
+    Spot spot;
+    @ManyToOne
+    @JsonBackReference
+    Gate gate;
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
+
+    public Gate getGate() {
+        return gate;
+    }
+
+    public void setGate(Gate gate) {
+        this.gate = gate;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 
     public Long getId() {
         return id;
@@ -37,13 +67,5 @@ public class Vehicle {
 
     public void setReg_no(String reg_no) {
         this.reg_no = reg_no;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

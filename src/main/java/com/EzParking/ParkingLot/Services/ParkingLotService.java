@@ -2,6 +2,7 @@ package com.EzParking.ParkingLot.Services;
 
 import com.EzParking.ParkingLot.Models.Operator;
 import com.EzParking.ParkingLot.Models.ParkingLot;
+import com.EzParking.ParkingLot.Models.Ticket;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface ParkingLotService {
     public ParkingLot deleteParkingLot(String name, String address);
     public List<Operator> addOperator(String name, String phone, String lot_name);
     public List<Operator> getAllOperators(String lot_name);
+    public Ticket vehicleEntry(long gate_id, String vehicle_type, String reg_no) throws Exception;
 }

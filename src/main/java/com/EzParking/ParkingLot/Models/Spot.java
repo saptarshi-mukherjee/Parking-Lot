@@ -11,8 +11,21 @@ public class Spot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "floor_id")
     @JsonBackReference
     Floor floor;
+    @OneToOne
+    @JoinColumn(name = "vehicle_id")
+    @JsonBackReference
+    Vehicle vehicle;
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 
     public Floor getFloor() {
         return floor;

@@ -7,8 +7,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class PetroleumSpot extends Spot {
     private SpotType type;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Vehicle vehicle;
+
 
     public SpotType getType() {
         return type;
@@ -18,11 +17,11 @@ public class PetroleumSpot extends Spot {
         this.type = type;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
+//    public Vehicle getVehicle() {
+//        return vehicle;
+//    }
+//
+//    public void setVehicle(Vehicle vehicle) {
+//        this.vehicle = vehicle;
+//    }
 }

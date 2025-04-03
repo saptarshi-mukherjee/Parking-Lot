@@ -2,11 +2,13 @@ package com.EzParking.ParkingLot.Services;
 
 import com.EzParking.ParkingLot.Models.Meter;
 import com.EzParking.ParkingLot.Repositories.MeterRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@Transactional
 public class MeterServiceImpl implements MeterService {
 
     @Autowired

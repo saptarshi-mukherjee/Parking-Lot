@@ -4,10 +4,12 @@ package com.EzParking.ParkingLot.Services;
 import com.EzParking.ParkingLot.Models.Operator;
 import com.EzParking.ParkingLot.Models.ParkingLot;
 import com.EzParking.ParkingLot.Repositories.OperatorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class OperatorServiceImpl implements OperatorService {
 
     @Autowired

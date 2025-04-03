@@ -9,6 +9,7 @@ import com.EzParking.ParkingLot.Strategies.OperatorAssignmentStrategy.AssignFirs
 import com.EzParking.ParkingLot.Strategies.OperatorAssignmentStrategy.AssignOperatorStrategy;
 import com.EzParking.ParkingLot.Strategies.OperatorReassignmentStrategy.RandomReassignmentStrategy;
 import com.EzParking.ParkingLot.Strategies.OperatorReassignmentStrategy.ReassignOperatorStrategy;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 
 @Service
+@Transactional
 public class GateServiceImpl implements GateService {
 
     @Autowired

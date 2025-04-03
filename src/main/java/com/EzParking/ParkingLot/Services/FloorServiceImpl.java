@@ -2,6 +2,7 @@ package com.EzParking.ParkingLot.Services;
 
 import com.EzParking.ParkingLot.Models.*;
 import com.EzParking.ParkingLot.Repositories.FloorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 @Service
+@Transactional
 public class FloorServiceImpl implements FloorService {
 
     @Autowired

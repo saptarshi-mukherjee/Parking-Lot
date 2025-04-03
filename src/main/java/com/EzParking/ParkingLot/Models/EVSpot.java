@@ -8,8 +8,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class EVSpot extends Spot {
     private SpotType type;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Vehicle vehicle;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Meter meter;
 
@@ -21,13 +20,13 @@ public class EVSpot extends Spot {
         this.type = type;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
+//    public Vehicle getVehicle() {
+//        return vehicle;
+//    }
+//
+//    public void setVehicle(Vehicle vehicle) {
+//        this.vehicle = vehicle;
+//    }
 
     public Meter getMeter() {
         return meter;

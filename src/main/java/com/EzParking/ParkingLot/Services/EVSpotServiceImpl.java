@@ -5,6 +5,7 @@ import com.EzParking.ParkingLot.Models.Floor;
 import com.EzParking.ParkingLot.Models.Meter;
 import com.EzParking.ParkingLot.Models.SpotType;
 import com.EzParking.ParkingLot.Repositories.EVSpotRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 
 @Service
+@Transactional
 public class EVSpotServiceImpl implements EVSpotService {
 
     @Autowired

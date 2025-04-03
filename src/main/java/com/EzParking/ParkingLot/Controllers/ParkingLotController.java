@@ -2,10 +2,13 @@ package com.EzParking.ParkingLot.Controllers;
 
 
 import com.EzParking.ParkingLot.DTO.RequestDTO.AddOperatorRequestDto;
+import com.EzParking.ParkingLot.DTO.RequestDTO.GenerateTicketRequestDto;
 import com.EzParking.ParkingLot.DTO.RequestDTO.ParkingLotDeleteRequestDto;
 import com.EzParking.ParkingLot.DTO.RequestDTO.ParkingLotRequestDto;
+import com.EzParking.ParkingLot.DTO.ResponseDTO.VehicleEntryResponseDto;
 import com.EzParking.ParkingLot.Models.Operator;
 import com.EzParking.ParkingLot.Models.ParkingLot;
+import com.EzParking.ParkingLot.Models.Ticket;
 import com.EzParking.ParkingLot.Services.ParkingLotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +41,18 @@ public class ParkingLotController {
     @GetMapping("/get/operator/all/{lot_name}")
     public List<Operator> getAllOperators(@PathVariable("lot_name") String lot_name) {
         return parking_lot_service.getAllOperators(lot_name);
+    }
+
+    @GetMapping("/entry")
+    public VehicleEntryResponseDto getTicket(@RequestBody GenerateTicketRequestDto request) throws Exception {
+        Ticket ticket = parking_lot_service.vehicleEntry(request.getGate_id(), request.getVehicle_type(), request.getReg_no());
+        VehicleEntryResponseDto response=new VehicleEntryResponseDto();
+        response.setTicket_id(ticket.getTicket_id());
+        response.setEntry_time(ticket.getEntry_time());
+        response.setGate_id(ticket.getVehicle().getGate().getId());
+        response.setReg_no(ticket.getVehicle().getReg_no());
+        response.setSpot_id(ticket.getVehicle().getSpot().getId());
+        response.setSpot_type(ticket.getVehicle().getType().toString());
+        return response;
     }
 }

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Gate {
     @Id
@@ -17,6 +20,17 @@ public class Gate {
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private Floor floor;
+    @OneToMany(mappedBy = "gate")
+    @JsonManagedReference
+    List<Vehicle> vehicle=new ArrayList<>();
+
+    public List<Vehicle> getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(List<Vehicle> vehicle) {
+        this.vehicle = vehicle;
+    }
 
     public Floor getFloor() {
         return floor;
