@@ -7,6 +7,8 @@ import com.EzParking.ParkingLot.Repositories.GateRepository;
 import com.EzParking.ParkingLot.Repositories.OperatorRepository;
 import com.EzParking.ParkingLot.Strategies.OperatorAssignmentStrategy.AssignFirstAvailable;
 import com.EzParking.ParkingLot.Strategies.OperatorAssignmentStrategy.AssignOperatorStrategy;
+import com.EzParking.ParkingLot.Strategies.OperatorReassignmentStrategy.RandomReassignmentStrategy;
+import com.EzParking.ParkingLot.Strategies.OperatorReassignmentStrategy.ReassignOperatorStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,27 @@ public class GateServiceImpl implements GateService {
         AssignOperatorStrategy strategy=new AssignFirstAvailable(gate_repo,operator_repo);
         Gate gate=gate_repo.fetchGateById(gate_id);
         return strategy.assign(gate);
+    }
+
+    @Override
+    public List<Gate> resetOperators() {
+        List<Gate> gates=gate_repo.fetchAllGates();
+        for(Gate gate : gates) {
+            gate.setOperator(null);
+            gate_repo.save(gate);
+        }
+        return gates;
+    }
+
+    @Override
+    public Gate reassignOperator(Long gate_id) {
+        Gate gate=gate_repo.fetchGateById(gate_id);
+        if(gate.getOperator()==null)
+            System.out.println("ASSIGN OPERATOR FIRST");
+        else {
+            ReassignOperatorStrategy strategy=new RandomReassignmentStrategy(gate_repo,operator_repo);
+            gate= strategy.reassign(gate);
+        }
+        return gate;
     }
 }

@@ -4,10 +4,9 @@ import com.EzParking.ParkingLot.DTO.ResponseDTO.OperatorAssignmentResponseDto;
 import com.EzParking.ParkingLot.Models.Gate;
 import com.EzParking.ParkingLot.Services.GateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/gate")
@@ -23,5 +22,15 @@ public class GateController {
         response.setGate_id(gate.getId());
         response.setOperator_name(gate.getOperator().getName());
         return response;
+    }
+
+    @PutMapping("/reset")
+    public List<Gate> resetAllGates() {
+        return gate_service.resetOperators();
+    }
+
+    @PutMapping("/reassign/operator/{gate_id}")
+    public Gate reassignOperator(@PathVariable("gate_id") long gate_id) {
+        return gate_service.reassignOperator(gate_id);
     }
 }

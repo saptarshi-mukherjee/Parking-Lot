@@ -11,7 +11,7 @@ public class Gate {
     private Long id;
     private GateType type;
     //private Integer gate_no;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JsonManagedReference
     private Operator operator;
     @ManyToOne(cascade = CascadeType.ALL)
