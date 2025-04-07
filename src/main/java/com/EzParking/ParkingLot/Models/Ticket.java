@@ -1,10 +1,9 @@
 package com.EzParking.ParkingLot.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -15,9 +14,13 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ticket_id;
     LocalDateTime entry_time;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @ManyToOne
+    @JsonBackReference
     Vehicle vehicle;
+    @OneToOne(mappedBy = "ticket")
+    @JsonManagedReference
+    Bill bill;
+    TicketStatus status;
 
 
     public Long getTicket_id() {
@@ -42,5 +45,21 @@ public class Ticket {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public TicketStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TicketStatus status) {
+        this.status = status;
     }
 }

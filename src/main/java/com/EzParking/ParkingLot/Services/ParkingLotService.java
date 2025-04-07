@@ -1,5 +1,6 @@
 package com.EzParking.ParkingLot.Services;
 
+import com.EzParking.ParkingLot.Models.Bill;
 import com.EzParking.ParkingLot.Models.Operator;
 import com.EzParking.ParkingLot.Models.ParkingLot;
 import com.EzParking.ParkingLot.Models.Ticket;
@@ -12,4 +13,5 @@ public interface ParkingLotService {
     public List<Operator> addOperator(String name, String phone, String lot_name);
     public List<Operator> getAllOperators(String lot_name);
     public Ticket vehicleEntry(long gate_id, String vehicle_type, String reg_no) throws Exception;
+    public Bill vehicleExit(String reg_no, Double unis_consumed);
 }

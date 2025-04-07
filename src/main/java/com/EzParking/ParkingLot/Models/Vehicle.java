@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Vehicle {
     @Id
@@ -11,15 +14,27 @@ public class Vehicle {
     private Long id;
     private VehicleType type;
     private String reg_no;
-    @OneToOne(mappedBy = "vehicle")
-    @JsonBackReference
-    Ticket ticket;
+    @OneToMany(mappedBy = "vehicle")
+    @JsonManagedReference
+    List<Ticket> tickets=new ArrayList<>();
     @OneToOne(mappedBy = "vehicle")
     @JsonManagedReference
     Spot spot;
     @ManyToOne
     @JsonBackReference
     Gate gate;
+    @OneToMany(mappedBy = "vehicle")
+    @JsonManagedReference
+    List<Bill> bills=new ArrayList<>();
+
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
 
     public Spot getSpot() {
         return spot;
@@ -37,12 +52,12 @@ public class Vehicle {
         this.gate = gate;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public Long getId() {

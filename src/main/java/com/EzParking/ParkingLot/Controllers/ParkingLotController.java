@@ -1,11 +1,10 @@
 package com.EzParking.ParkingLot.Controllers;
 
 
-import com.EzParking.ParkingLot.DTO.RequestDTO.AddOperatorRequestDto;
-import com.EzParking.ParkingLot.DTO.RequestDTO.GenerateTicketRequestDto;
-import com.EzParking.ParkingLot.DTO.RequestDTO.ParkingLotDeleteRequestDto;
-import com.EzParking.ParkingLot.DTO.RequestDTO.ParkingLotRequestDto;
+import com.EzParking.ParkingLot.DTO.RequestDTO.*;
+import com.EzParking.ParkingLot.DTO.ResponseDTO.GenerateBillResponseDto;
 import com.EzParking.ParkingLot.DTO.ResponseDTO.VehicleEntryResponseDto;
+import com.EzParking.ParkingLot.Models.Bill;
 import com.EzParking.ParkingLot.Models.Operator;
 import com.EzParking.ParkingLot.Models.ParkingLot;
 import com.EzParking.ParkingLot.Models.Ticket;
@@ -53,6 +52,19 @@ public class ParkingLotController {
         response.setReg_no(ticket.getVehicle().getReg_no());
         response.setSpot_id(ticket.getVehicle().getSpot().getId());
         response.setSpot_type(ticket.getVehicle().getType().toString());
+        return response;
+    }
+
+
+    @GetMapping("/exit")
+    public GenerateBillResponseDto getBill(@RequestBody GenerateBillRequestDto request) {
+        GenerateBillResponseDto response=new GenerateBillResponseDto();
+        Bill bill=parking_lot_service.vehicleExit(request.getReg_no(), request.getUnits_consumed());
+        response.setEntry_time(bill.getEntry_time().toString());
+        response.setExit_time(bill.getExit_time().toString());
+        response.setReg_no(bill.getVehicle().getReg_no());
+        response.setUnits_consumed(request.getUnits_consumed());
+        response.setBill_value(bill.getBill_value());
         return response;
     }
 }
