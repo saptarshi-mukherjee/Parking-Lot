@@ -135,6 +135,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         return bill;
     }
 
+    @Override
+    public List<Bill> getAllBills(String reg_no) {
+        Vehicle vehicle=vehicle_repo.fetchByRegNo(reg_no);
+        List<Bill> bills=vehicle.getBills();
+        return bills;
+    }
+
     private Floor setFloorStatus(Floor floor) {
         boolean is_out_of_service=true;
         for(Spot spot : floor.getSpots()) {

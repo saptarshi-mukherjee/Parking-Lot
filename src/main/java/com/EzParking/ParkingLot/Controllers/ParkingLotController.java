@@ -2,6 +2,7 @@ package com.EzParking.ParkingLot.Controllers;
 
 
 import com.EzParking.ParkingLot.DTO.RequestDTO.*;
+import com.EzParking.ParkingLot.DTO.ResponseDTO.BillsPerVehicleResponseDto;
 import com.EzParking.ParkingLot.DTO.ResponseDTO.GenerateBillResponseDto;
 import com.EzParking.ParkingLot.DTO.ResponseDTO.VehicleEntryResponseDto;
 import com.EzParking.ParkingLot.Models.Bill;
@@ -12,6 +13,7 @@ import com.EzParking.ParkingLot.Services.ParkingLotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -65,6 +67,24 @@ public class ParkingLotController {
         response.setReg_no(bill.getVehicle().getReg_no());
         response.setUnits_consumed(request.getUnits_consumed());
         response.setBill_value(bill.getBill_value());
+        return response;
+    }
+
+
+    @GetMapping("/get/all/bills")
+    public BillsPerVehicleResponseDto getAllBills(@RequestParam("search") String reg_no) {
+        List<Bill> bills=parking_lot_service.getAllBills(reg_no);
+        BillsPerVehicleResponseDto response=new BillsPerVehicleResponseDto();
+        List<BillResponseDto> bill_response_list=new ArrayList<>();
+        response.setReg_no(reg_no);
+        for(Bill bill : bills) {
+            BillResponseDto bill_response=new BillResponseDto();
+            bill_response.setEntry_time(bill.getEntry_time().toString());
+            bill_response.setExit_time(bill.getExit_time().toString());
+            bill_response.setBill_value(bill.getBill_value());
+            bill_response_list.add(bill_response);
+        }
+        response.setBills(bill_response_list);
         return response;
     }
 }

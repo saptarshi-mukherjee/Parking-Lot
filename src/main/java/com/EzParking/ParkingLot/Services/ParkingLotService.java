@@ -14,4 +14,5 @@ public interface ParkingLotService {
     public List<Operator> getAllOperators(String lot_name);
     public Ticket vehicleEntry(long gate_id, String vehicle_type, String reg_no) throws Exception;
     public Bill vehicleExit(String reg_no, Double unis_consumed);
+    public List<Bill> getAllBills(String reg_no);
 }
